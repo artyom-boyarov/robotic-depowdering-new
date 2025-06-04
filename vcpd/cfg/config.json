@@ -1,0 +1,119 @@
+{
+    "num_angle": 8,
+    "th_min": 0.93,
+    "gripper":
+    {
+        "max_width": 0.1,
+        "min_width": 0.0,
+        "depth": 0.0868
+    },
+    "tray":
+    {
+        "height": 0.384,
+        "width": 0.384,
+        "depth": 0.1,
+        "theta": 45,
+        "thickness": 0.01
+    },
+    "camera":
+    {
+        "width": 640,
+        "height": 480,
+        "fov": 42,
+        "fov_error": 1,
+        "eye_position": [0, 0, 0.67],
+        "target_position": [0, 0, 0],
+        "up_vector": [-1, 0, 0],
+        "near_val": 0.105,
+        "far_val": 10,
+        "x_min": -0.192,
+        "x_max": 0.192,
+        "y_min": -0.192,
+        "y_max": 0.192,
+        "z_min": 0.5,
+        "z_max": 0.7
+    },
+    "scene":
+    {
+        "obj": 20,
+        "trial": 100,
+        "normal_threshold": 0.707,
+        "frame": 20,
+        "wait": 10,
+        "pose_sampling": "sphere"
+    },
+    "pose_range":
+    {
+        "x_min": -0.15,
+        "x_max": 0.15,
+        "y_min": -0.15,
+        "y_max": 0.15,
+        "z_min": 0.37,
+        "z_max": 0.4,
+        "alpha_min": -2.0,
+        "alpha_max": 2.0,
+        "beta_min": -2.0,
+        "beta_max": 2.0,
+        "gamma_min": -2.0,
+        "gamma_max": 2.0
+    },
+    "sdf":
+    {
+        "x_min": -0.192,
+        "x_max": 0.192,
+        "y_min": -0.192,
+        "y_max": 0.192,
+        "z_min": 0.009,
+        "z_max": 0.297,
+        "add_noise": true,
+        "gaussian_blur": true,
+        "voxel_length": 0.003,
+        "save_volume": [5, 10, 14, 19]
+    },
+    "train":
+    {
+        "batch_size": 24,
+        "lr": 0.0005,
+        "momentum": 0.9,
+        "weight_decay": 0.0005,
+        "gamma": 0.77,
+        "antipodal": 1.0,
+        "huber": 100,
+        "scale": 0.4,
+        "num_sample": 512
+    },
+    "test":
+    {
+        "obj": 20,
+        "frame": 20,
+        "test_volume": [19],
+        "pose_sampling": "sphere"
+    },
+    "refine":
+    {
+        "batch_size": 24,
+        "lr": 0.001,
+        "momentum": 0.9,
+        "weight_decay": 0.0005,
+        "gamma": 0.77,
+        "finger_width": 0.003,
+        "body_width": 0.02,
+        "hand_height": 0.017,
+        "hand_outer_diameter": 0.085,
+        "hand_depth": 0.04,
+        "num_sample": 16,
+        "num_pose": 1,
+        "x_min": -0.0,
+        "x_max": 0.0,
+        "y_min": -0.0,
+        "y_max": 0.0,
+        "z_min": -0.0,
+        "z_max": 0.0,
+        "alpha_min": -10.0,
+        "alpha_max": 10.0,
+        "beta_min": -10.0,
+        "beta_max": 10.0,
+        "gamma_min": -10.0,
+        "gamma_max": 10.0
+    }
+}

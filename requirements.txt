@@ -1,0 +1,16 @@
+numpy
+spdlog
+flexivrdk
+pybullet
+scipy
+trimesh
+pyvista
+pymeshlab
+trimesh
+pygalmesh
+meshio
+mpi4py
+petsc
+petsc4py
+UFL
+fenics

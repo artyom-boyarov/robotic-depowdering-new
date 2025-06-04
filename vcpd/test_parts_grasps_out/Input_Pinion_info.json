@@ -1,0 +1,14 @@
+{
+    "num_pairs": 334,
+    "keys": [
+        "vertex_ids",
+        "x_directions",
+        "y_directions",
+        "z_directions",
+        "centers",
+        "widths",
+        "quaternions",
+        "min_sing_val_G",
+        "vol_ellipsoid_in_wrench"
+    ]
+}
