@@ -10,6 +10,7 @@ import pybullet as p
 import numpy as np
 import trimesh
 import shutil
+import pickle
 import json
 
 import vcpd.vcpd.grasping.grasp_evaluation as grasp_eval
@@ -126,7 +127,8 @@ def find_grasp(gui: bool, verbose: bool, obj_name: str, num_samples: int):
                     'minimum_force': [],
                     'dist_to_com': [],
                     'displacement': [],
-                    'quality_objective_fn': []}
+                    'quality_objective_fn': [],
+                    'faces': []}
     print(f'{obj_name} has {num_vertices} vertices in the mesh')
 
     skip_factor = 1 if num_samples == 0 else int(num_vertices / num_samples)
@@ -275,6 +277,7 @@ def find_grasp(gui: bool, verbose: bool, obj_name: str, num_samples: int):
                             grasp_info['centers'].append(centers[j])
                             grasp_info['widths'].append(widths[j])
                             grasp_info['quaternions'].append(quat[angle_idx])
+                            grasp_info['faces'].append(selected_faces[j])
                             # Friction coefficient can be between 0.05 to 0.75
                             # Object mass of 100g
                             grasp_info['minimum_force'].append(grasp_eval.get_minimum_force_friction(rot_mat[0:3, 1], 0.75, obj_mass))
@@ -303,7 +306,14 @@ def find_grasp(gui: bool, verbose: bool, obj_name: str, num_samples: int):
     except Exception:
         print("")
     
-    np.save(output_dir + '/grasps.npy', grasp_info)
+    np.save(output_dir + '/grasps_vertex_ids.npy', grasp_info['vertex_ids'])
+    np.save(output_dir + '/grasps_x_directions.npy', grasp_info['x_directions'])
+    np.save(output_dir + '/grasps_y_directions.npy', grasp_info['y_directions'])
+    np.save(output_dir + '/grasps_z_directions.npy', grasp_info['z_directions'])
+    np.save(output_dir + '/grasps_base_pos.npy', grasp_info['base_pos'])
+    np.save(output_dir + '/grasps_centers.npy', grasp_info['centers'])
+    np.save(output_dir + '/grasps_widths.npy', grasp_info['widths'])
+    np.save(output_dir + '/grasps_faces.npy', grasp_info['faces'])
     del obj
 
 
@@ -312,7 +322,7 @@ def main():
     mesh_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', 'meshes')
     gui = False
     verbose = False
-    mesh_name = 'vice_grip'
+    mesh_name = 'bracket'
     num_samples = 0
     find_grasp(gui, verbose, mesh_name, num_samples)
     
